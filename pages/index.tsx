@@ -1,3 +1,5 @@
+import { flatten } from 'lodash'
+
 const Home = () => {
   const fetchInvoices = async () => {
     try {
@@ -9,7 +11,11 @@ const Home = () => {
 
       const parsedData = await response.json()
 
-      console.log(parsedData)
+      const allItems = flatten(
+        parsedData.invoices.map(invoice => invoice.items)
+      )
+
+      console.log(allItems)
     } catch (error) {
       console.error(error.message)
     }
