@@ -19,3 +19,17 @@ export async function all(): Promise<Item[]> {
 
   return allItems
 }
+
+export async function sumItemsValueByCode(code: string) {
+  return all()
+  .then(items => filterItemsByCode(items, code))
+  .then(sumItemsValues)
+}
+
+function filterItemsByCode(items: Item[], code: string) {
+  return items.filter(item => item.id === code)
+}
+
+function sumItemsValues(items: Item[]) {
+  return items.reduce((total, item) => total + item.value, 0)
+}
