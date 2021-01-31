@@ -22,8 +22,8 @@ export async function all(): Promise<Item[]> {
 
 export async function sumItemsValueByCode(code: string) {
   return all()
-  .then(items => filterItemsByCode(items, code))
-  .then(sumItemsValues)
+    .then(items => filterItemsByCode(items, code))
+    .then(sumItemsValues)
 }
 
 function filterItemsByCode(items: Item[], code: string) {
