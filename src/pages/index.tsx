@@ -1,29 +1,15 @@
-import { flatten } from 'lodash'
+import { all as getAllInvoicesItems } from '../services/invoices'
 
 const Home = () => {
-  const fetchInvoices = async () => {
-    try {
-      const response = await fetch('/api/invoices')
+  const handleClick = async () => {
+    const items = await getAllInvoicesItems()
 
-      if (!response.ok) {
-        throw Error(response.statusText)
-      }
-
-      const parsedData = await response.json()
-
-      const allItems = flatten(
-        parsedData.invoices.map(invoice => invoice.items)
-      )
-
-      console.log(allItems)
-    } catch (error) {
-      console.error(error.message)
-    }
+    console.log(items)
   }
 
   return (
     <main className="layout">
-      <button className="btn btn-white" onClick={fetchInvoices}>
+      <button className="btn btn-white" onClick={handleClick}>
         Fetch Invoices
       </button>
     </main>
