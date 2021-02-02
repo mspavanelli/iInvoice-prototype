@@ -1,10 +1,14 @@
-import { all as getAllInvoicesItems } from '../services/invoices'
+import {
+  all as getAllInvoicesItems,
+  sumItemsValueByCode,
+} from '../services/invoices'
 
 const Home = () => {
   const handleClick = async () => {
     const items = await getAllInvoicesItems()
+    const total = await sumItemsValueByCode('2143')
 
-    console.log(items)
+    console.log(items, total)
   }
 
   return (
